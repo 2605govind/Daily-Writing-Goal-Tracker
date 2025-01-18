@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily Writing Goal Tracker</title>
+    <link rel="stylesheet" href="./calendar.css">
+    <link rel="stylesheet" href="./mindmap.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+
+    <!-- calendar container -->
+    <div class="container">
+        <div class="left-container">
+            <div class="calender-box">
+                <div class="header">
+                    <div id="prevCal" class="btn"><i class="fa-solid fa-arrow-left"></i></div>
+                    <div id="month-year"></div>
+                    <div id="nextCal" class="btn"><i class="fa-solid fa-arrow-right"></i></div>
+                </div>
+               
+                <div class="weekdays">
+                    <div>Sun</div>
+                    <div>Mon</div>
+                    <div>Tue</div>
+                    <div>Wed</div>
+                    <div>Thu</div>
+                    <div>Fri</div>
+                    <div>Sat</div>
+                </div>
+                <div id="day-container" class="days"></div>
+            </div>
+            <div class="all-mind-map-section">
+              <h4>All Mind Maps</h4>
+                <section class="print-all-mind-map">
+    
+                  </section>                  
+            </div>
+        </div>
+
+
+        <div class="right-container">
+            <div class="right-header">
+                <div class="header-navigate-icon">
+                  <div class="navigate-icon-calendar header-navigate-icon-active"><img src="./icons/proud.png"></div>
+                  <div class="navigate-icon-map"><img src="./icons/emoji.png"></div>
+                </div>
+            </div>
+            <div class="right-goal-container">
+                <div class="goal-header">
+                    <h2 id="current-date">8 Wednesday</h2>
+                    <div class="add-goal-container">
+                        <img src="./images/goal.png">
+                        <textarea id="add-goal" placeholder="Add Today Goals" rows="1" spellcheck="false" autocomplete="off" ></textarea>
+                        <i id="addNewGoal" class="fa-solid fa-paper-plane"></i>
+                    </div>
+                   
+                </div>
+                <div class="div-goal-body">
+
+                    <!-------------------------------incomplete section  -->
+                    <div class="incomplete-goal">
+                        <!-- -------------------------header -->
+                        <div class="body-goal-header">
+                            <h3>Incomplete Goal List</h3>
+                            <i id="toggle-incomplete-goal" class="active-body fa-solid fa-angle-up "></i>
+                        </div>
+
+                        <!-- -------------------------body -->
+                        <div class="incomplete-goal-body goal-body-active">
+                        
+                           
+ 
+                        </div>
+
+                    </div>
+                    <!-- ----------------------------  complete-goal -->
+                    <div class="complete-goal">
+                         <!-- -------------------------header -->
+                         <div class="body-goal-header">
+                            <h3>Complete Goal List</h3>
+                            <i id="toggle-complete-goal" class=" fa-solid fa-angle-up "></i>
+                        </div>
+
+
+                        <!-- -------------------------body -->
+                        <div class="complete-goal-body ">
+                  
+                      
+                           
+                        </div>
+
+                    </div>
+                    
+                </div>
+            </div>
+
+
+
+            <div class="mind-map-section">
+                <div class="mind-map-section-header">
+                  <h3>Mind Maps List</h3>
+                  <button class="adding-mindmap" type="button">Create Mind Map</button>
+                </div>
+                <div class="mind-map-section-body">
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+    <!-- mind map container  -->
+    <div class="container-maip">
+      <div class="left-container-maip">
+        <div class="left-nav">
+          <div class="file-navigation">
+            <span id="cancelMapWindow"><i class="fa-solid fa-xmark"></i></span>
+            <span id="saveMapWindow">Save</span>
+            <span id="saveMapWindowFileName"><span>File Name </span><input id="mapfileName" autocomplete="off"  type="text" spellcheck="false"></span>
+          </div>
+          <div class="zoom-navigation">
+            <span id="zoomOut"><i class="fa-solid fa-magnifying-glass-minus"></i></span>
+            <span id="zoomPrint">100%</span>
+            <span id="zoomIn"><i class="fa-solid fa-magnifying-glass-plus"></i></span>
+            <span id="resetZoom">Reset</span>
+          </div>
+        </div>
+        <div class="left-body">
+          <canvas id="mindMapCanvas" width="800" height="500"></canvas>
+          <div class="side-navigation-menu">
+            <div id="addNodeCircle" data-content="Add Circle"><img src="./images/circle-icon.png"></div>
+            <div id="addNodeRectangle" data-content="Add Rectangle"><img src="./images/rectangle.png"></div>
+            <div id="connectNodes" data-content="Add Line"><img src="./images/line-connection.png"></div>
+            <div id="deleteconnectNodes" data-content="Delete Line"><img src="./images/delete-line.png"></div>
+            <div id="deleteNode" data-content="Delete Node"><img src="./images/delete-node-trash.png"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="right-container-main">
+        <div class="right-nav">
+          <div class="header-navigate-icon">
+            <div class="navigate-map-icon-calendar"><img src="./icons/proud.png"></div>
+            <div class="navigate-map-icon-map header-navigate-icon-active"><img src="./icons/emoji.png"></div>
+          </div>
+        </div>
+        <div class="right-body">
+          <div class="node-details">
+            <div class="title-box">
+              <h3>Title</h3>
+              <textarea spellcheck="false" id="nodeTitle" placeholder="Enter Title..." rows="1"></textarea>
+            </div>
+            <div class="description-field">
+              <textarea spellcheck="false" placeholder="Description..." id="nodeDescription" rows="1"></textarea>
+            </div>
+            <div class="node-controler">
+              <div id="width-height-contro"><img src="./icons/width.png"></div>
+              <div id="font-size-contro"><img src="./icons/font-adjustment.png"></div>
+              <div id="colo-contro"><img src="./icons/colour.png"></div>
+            </div>
+
+            <div class="controler-container">
+
+              <div class="controler-container-box">
+                <div id="widht-increment-decriment" class="controler-container-size"> 
+                  <h4>Width</h4>
+                  <div>
+                    <span><i id="widthDecrement" class="fa-solid fa-left-long controler-container-size-i"></i></span>
+                    <span id="widthPrint" class="print-values">0px</span>
+                    <span><i id="widthIncrement" class="fa-solid fa-right-long controler-container-size-i"></i></span>
+                  </div>
+                </div>
+                <div class="controler-container-range"><input id="nodeWidthInput" type="range" min="1" max="800"></div>
+              </div>
+
+              <div class="controler-container-box">
+                <div id="height-increment-decriment" class="controler-container-size"> 
+                  <h4>Height</h4>
+                  <div>
+                    <span ><i id="heightDecrement" class="fa-solid fa-left-long controler-container-size-i"></i></span>
+                    <span id="heightPrint" class="print-values">0px</span>
+                    <span ><i id="heightIncrement" class="fa-solid fa-right-long controler-container-size-i"></i></span>
+                  </div>
+                </div>
+                <div class="controler-container-range"><input id="nodeheightInput" type="range" min="1" max="800"></div>
+              </div>
+
+
+              <div class="controler-container-box">
+                <div id="font-increment-decriment" class="controler-container-size"> 
+                  <h4>Font Size</h4>
+                  <div>
+                    <span><i id="fontDecrement" class="fa-solid fa-left-long controler-container-size-i"></i></span>
+                    <span id="fontPrint" class="print-values">34px</span>
+                    <span ><i id="fontIncrement" class="fa-solid fa-right-long controler-container-size-i"></i></span>
+                  </div>
+                </div>
+                <div class="controler-container-range"><input id="nodefontInput" type="range" max="200"></div>
+              </div>
+
+              <div class="controler-container-box">
+                <div id="fontColorSelect" class="controler-container-color controler-container-color-active"> 
+                  <h4>Font Color Selector</h4>
+                  <div>
+                    <span><input id="selecColorForFont" type="color"></span>
+                  </div>
+                </div>
+
+                <div id="BackgroundColorSelect" class="controler-container-color"> 
+                  <h4>Background Color Selector</h4>
+                  <div>
+                    <span><input id="selecColorForBackground" type="color"></span>
+                  </div>
+                </div>
+                
+                <div class="predefine-color-pannal">
+    
+                </div>
+
+              </div>
+          
+            </div>
+          </div>
+        </div>
+
+        <div class="map-templates-container">
+          <h3>Maps Templates</h3>
+          <div class="map-templates-body">
+            <div index-val="0" class="map-templates-box">
+              <h4>First Template</h4>
+            </div>
+            <div index-val="1" class="map-templates-box">
+              <h4>Second Template</h4>
+            </div>
+            <div index-val="2" class="map-templates-box">
+              <h4>Third Template</h4>
+            </div>
+            <div index-val="3" class="map-templates-box">
+              <h4>Forth Template</h4>
+            </div>
+           
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+
+
+
+    
+    
+    <!-- Storing All Data -->
+    <script src="./allData.js"></script>
+    
+    <script src="./calendar.js"></script>
+    
+    <!-- container-maip -->
+    <script src="./mindmap.js"></script>
+    <script src="./mindmap2.js"></script>
+    
+    
+    <script src="./fileManeg.js"></script>
+
+  
+</body>
+</html>
